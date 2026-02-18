@@ -1,0 +1,10 @@
+FROM node:lts-alpine
+WORKDIR '/app'
+
+COPY package.json .
+
+RUN npm install
+#leave copy fo future proof just in case (even with volumes)
+COPY . .
+
+CMD ["npm", "run", "start"]

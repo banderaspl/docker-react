@@ -1,0 +1,23 @@
+version: '3'
+services: 
+#can call anything like reactApp
+  web:
+  #that means Dockerfile.dev is inside the same directory
+    build: 
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes: 
+      - /app/node_modules
+      #mapping like ports
+      - .:/app
+    #to compare in terminal would be docker run -p 3000:3000 -v /app/node_modules -v $(pwd):/app containerID
+  tests:
+      build:
+        context: .
+        dockerfile: Dockerfile.dev
+      volumes:
+        - /app/node_modules
+        - .:/app
+      command: ["npm", "run", "test"]
