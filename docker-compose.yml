@@ -15,7 +15,9 @@ services:
     #to compare in terminal would be docker run -p 3000:3000 -v /app/node_modules -v $(pwd):/app containerID
   tests:
       build:
+      #we can put . for defualt name or replace with contextand dockerfile:
         context: .
+        #renames for dev like f flag
         dockerfile: Dockerfile.dev
       volumes:
         - /app/node_modules
